@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#c7bf98"
     android:padding="20dp"
+    android:gravity="center"
     >
     <TextView
         android:id="@+id/text_view_popup"
@@ -14,16 +15,19 @@
         android:layout_height="wrap_content"
         android:text="Ряженка"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
+        android:layout_gravity="center"
         />
     <Spinner
         android:id="@+id/spinner_product_quantity"
         android:layout_width="match_parent"
         android:spinnerMode="dialog"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"/>
     <Button
         android:id="@+id/button_popup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Закрыть окно"
+        android:layout_gravity="center"
         />
 </LinearLayout>

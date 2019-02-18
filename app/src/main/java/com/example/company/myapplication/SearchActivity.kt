@@ -28,15 +28,16 @@ class SearchActivity : AppCompatActivity() {
 
         searchButton.setOnClickListener {
             if (listName ==  "Существующий") {
-                val intent = Intent(this, NewListActivity::class.java)
+                val intent = Intent()
                 //nameList.setText(listName) //TODO -- add to intent
-                startActivity(intent)
+                intent.putExtra("foundList", listName)
+                setResult(Activity.RESULT_OK, intent)
             }
-          else {
+            else {
                 val intent = Intent(this, NoSuchListActivity::class.java)
                 startActivity(intent)
             }
-
+            finish()
         }
 
     }

@@ -1,18 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/root_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center">
+
 
     <TextView
+        android:layout_marginTop="100dp"
+        android:textAlignment="center"
         android:id="@+id/nameList"
-        android:layout_width="wrap_content"
-        android:layout_height="95dp"
-        android:layout_marginStart="115dp"
-        android:layout_marginTop="67dp"
-        android:layout_marginBottom="569dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:text="Название Списка"
         android:textSize="24sp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -20,23 +21,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:layout_marginTop="100dp"
         android:id="@+id/addProduct"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="252dp"
         android:text="Добавить продукт"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/addTimetable"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="340dp"
         android:text="Добавить по расписанию"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>

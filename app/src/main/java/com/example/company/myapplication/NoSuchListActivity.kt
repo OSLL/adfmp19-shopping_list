@@ -11,8 +11,7 @@ class NoSuchListActivity: AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.no_such_list)
         returnToMain.setOnClickListener {
-            val intent = Intent(this, MainActivity ::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 }

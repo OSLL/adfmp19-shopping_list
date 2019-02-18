@@ -14,8 +14,7 @@ class PopUpActivity : AppCompatActivity() {
         setContentView(R.layout.popup)
         //setFinishOnTouchOutside(false)
         button_popup.setOnClickListener {
-            val intent = Intent(this, NewListActivity::class.java)
-            startActivity(intent)
+            finish()
         }
         var quantity = arrayOf("1 кг", "2 кг", "3 кг")
         var aa = ArrayAdapter(this, android.R.layout.simple_spinner_item, quantity)

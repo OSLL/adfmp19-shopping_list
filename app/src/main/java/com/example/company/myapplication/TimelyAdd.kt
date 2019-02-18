@@ -11,8 +11,7 @@ class TimelyAdd : AppCompatActivity() {
         setContentView(R.layout.timely_add)
         //setFinishOnTouchOutside(false)
         button_popup.setOnClickListener {
-            val intent = Intent(this, NewListActivity::class.java)
-            startActivity(intent)
+            finish()
         }
     }
 

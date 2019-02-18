@@ -7,6 +7,7 @@
     android:orientation="vertical"
     android:background="#c7bf98"
     android:padding="20dp"
+    android:gravity="center"
     >
     <TextView
         android:id="@+id/text_view_popup"
@@ -15,7 +16,9 @@
         android:text="ПОКА НИЧЕГО НЕ СЪЕЛИ"
         android:textAppearance="@style/Base.TextAppearance.AppCompat.Large"
         />
+
     <Button
+        android:layout_marginTop="50dp"
         android:id="@+id/button_popup"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
