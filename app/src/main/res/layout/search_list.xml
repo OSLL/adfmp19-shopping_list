@@ -24,7 +24,7 @@
         android:textAlignment="center"
         android:inputType="textPersonName"
         android:hint="Введите название!"
-        android:layout_marginTop="200dp"
+        android:layout_marginTop="100dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

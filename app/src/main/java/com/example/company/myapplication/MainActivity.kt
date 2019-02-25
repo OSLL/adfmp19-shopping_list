@@ -13,13 +13,16 @@ class MainActivity : AppCompatActivity() {
     val listMap = mutableMapOf<String, ArrayList<String>>(
             "первый список" to arrayListOf<String>("ряженка"),
             "Ещё список" to arrayListOf("Груши", "Картошка"))
+
+    val listNames = listMap.keys.toMutableList()
+
     var adapter : ArrayAdapter<String>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listMap.keys.toList())
+        adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listNames)
         lv.adapter = this!!.adapter
 
         joinExisting.setOnClickListener {
@@ -44,8 +47,16 @@ class MainActivity : AppCompatActivity() {
         if (data == null)
             return
         when (requestCode) {
-            1 -> listMap[data.getStringExtra("newList")] = arrayListOf()
-            2 -> listMap.put(data.getStringExtra("foundList"), arrayListOf())
+            1 -> {
+                val listName = data.getStringExtra("newList")
+                listMap[listName] = arrayListOf()
+                listNames.add(listName)
+            }
+            2 -> {
+                val listName = data.getStringExtra("foundList")
+                listMap[listName] = arrayListOf()
+                listNames.add(listName)
+            }
         }
         adapter!!.notifyDataSetChanged()
     }
