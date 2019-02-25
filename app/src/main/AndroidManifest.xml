@@ -9,6 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".delete_or_unselect"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -16,16 +17,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".SearchActivity">
-        </activity>
-        <activity android:name=".NoSuchListActivity">
-        </activity>
-        <activity android:name=".NewListActivity">
-        </activity>
-        <activity android:name=".EnterListName">
-        </activity>
-        <activity android:name=".PopUpActivity" android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
-        <activity android:name=".TimelyAdd" android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
+        <activity android:name=".SearchActivity"></activity>
+        <activity android:name=".NoSuchListActivity"></activity>
+        <activity android:name=".ChangeListActivity"></activity>
+        <activity android:name=".EnterListName"></activity>
+        <activity
+            android:name=".PopUpActivity"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
+        <activity
+            android:name=".TimelyAdd"
+            android:theme="@style/Theme.AppCompat.Dialog.Alert" />
     </application>
 
 </manifest>

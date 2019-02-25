@@ -9,14 +9,6 @@
 
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:text="Список Покупок"
-        android:textSize="24sp"/>
-
     <ListView
         android:id="@+id/lv"
         android:layout_width="match_parent"

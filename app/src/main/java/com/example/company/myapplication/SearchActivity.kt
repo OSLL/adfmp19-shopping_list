@@ -29,7 +29,6 @@ class SearchActivity : AppCompatActivity() {
         searchButton.setOnClickListener {
             if (listName ==  "Существующий") {
                 val intent = Intent()
-                //nameList.setText(listName) //TODO -- add to intent
                 intent.putExtra("foundList", listName)
                 setResult(Activity.RESULT_OK, intent)
             }

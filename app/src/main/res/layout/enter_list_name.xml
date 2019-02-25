@@ -7,6 +7,11 @@
     android:layout_height="match_parent"
     android:gravity="center">
 
+    <Button
+        android:id="@+id/CreateNewList"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Создать!" />
 
     <EditText
         android:id="@+id/enterListName"
@@ -14,12 +19,7 @@
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:textAlignment="center"
-        android:hint="Придумайте название!" />
-
-    <Button
-        android:id="@+id/CreateNewList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Создать!"
+        android:hint="Придумайте название!"
         android:layout_marginTop="100dp"/>
+
 </LinearLayout>
