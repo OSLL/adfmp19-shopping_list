@@ -10,9 +10,9 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val listMap = mutableMapOf<String, ArrayList<String>>(
-            "первый список" to arrayListOf<String>("ряженка"),
-            "Ещё список" to arrayListOf("Груши", "Картошка"))
+    val listMap = mutableMapOf<String, ArrayList<ProductItem>>(
+            "первый список" to arrayListOf(ProductItem("ряженка", "кг", 1f)),
+            "Ещё список" to arrayListOf(ProductItem("картошка")))
 
     val listNames = listMap.keys.toMutableList()
 
@@ -38,8 +38,8 @@ class MainActivity : AppCompatActivity() {
         lv.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, ChangeListActivity::class.java)
             intent.putExtra("listName", (view as TextView).text.toString())
-            intent.putStringArrayListExtra("products", listMap[(view as TextView).text.toString()])
-            startActivity(intent)
+            intent.putExtra("products", listMap[(view as TextView).text.toString()])
+            startActivityForResult(intent, 3)
         }
     }
 
@@ -56,6 +56,10 @@ class MainActivity : AppCompatActivity() {
                 val listName = data.getStringExtra("foundList")
                 listMap[listName] = arrayListOf()
                 listNames.add(listName)
+            }
+            3 -> {
+                val listName = data.getStringExtra("editedList")
+                listMap[listName] = data.getSerializableExtra("products") as ArrayList<ProductItem>
             }
         }
         adapter!!.notifyDataSetChanged()

@@ -1,9 +1,8 @@
 package com.example.company.myapplication
 
+import android.app.Activity
 import android.content.Intent
-import android.graphics.Color
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import android.widget.TextView
@@ -12,11 +11,11 @@ import kotlinx.android.synthetic.main.new_list.*
 class ChangeListActivity : AppCompatActivity() {
 
     //val productsList = mutableListOf("Продукт 1", "Продукт 2")
-    var productsList : ArrayList<String>? = null
+    var productsList : ArrayList<ProductItem>? = null
 
     var listTitle : String? = null
 
-    var adapter : ArrayAdapter<String>? = null
+    var adapter : ArrayAdapter<ProductItem>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,14 +25,15 @@ class ChangeListActivity : AppCompatActivity() {
 
         nameList.text = listTitle
 
-        productsList = intent.getStringArrayListExtra("products")
+        productsList = intent.getSerializableExtra("products") as ArrayList<ProductItem>?
 
-        adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, productsList as MutableList<String>)
+        adapter = ArrayAdapter<ProductItem>(this, android.R.layout.simple_list_item_1, productsList)
 
         lv.adapter = adapter
 
         lv.setOnItemClickListener { parent, view, position, id ->
-            (view as TextView).setBackgroundColor(Color.CYAN)
+            productsList!![position].isSelected = true;
+            adapter!!.notifyDataSetChanged()
         }
 
         lv.setOnItemLongClickListener { parent, view, position, id ->
@@ -53,6 +53,11 @@ class ChangeListActivity : AppCompatActivity() {
             val intent = Intent(this, TimelyAdd::class.java)
             startActivityForResult(intent, 2)
         }
+
+        val intent = Intent()
+        intent.putExtra("editedList", listTitle)
+        intent.putExtra("products", productsList)
+        setResult(Activity.RESULT_OK, intent)
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -61,7 +66,11 @@ class ChangeListActivity : AppCompatActivity() {
             return
         when (requestCode) {
             1 -> {
-                productsList!!.add(data.getStringExtra("newProduct"))
+                productsList!!.add(
+                        ProductItem(
+                                data.getStringExtra("newProduct"),
+                                data.getStringExtra("productUnit"),
+                                data.getFloatExtra("quantity", 0f)))
                 adapter!!.notifyDataSetChanged()
             }
             3 -> {
@@ -71,13 +80,12 @@ class ChangeListActivity : AppCompatActivity() {
                         productsList!!.removeAt(pos)
                     }
                     "unselect" -> {
-                        lv.getChildAt(pos).setBackgroundColor(Color.GRAY)
+                        productsList!![pos].isSelected = false
                     }
                 }
                 adapter!!.notifyDataSetChanged()
             }
         }
     }
-
 }
 
