@@ -24,6 +24,6 @@ public class ProductItem implements Serializable {
     @Override
     public String toString() {
         String selectIndicator = isSelected ? "***" : "";
-        return selectIndicator + name + ", " + quantity + " " + unit + " " + selectIndicator;
+        return selectIndicator + name + ", " + quantity + " " + unit + selectIndicator;
     }
 }
