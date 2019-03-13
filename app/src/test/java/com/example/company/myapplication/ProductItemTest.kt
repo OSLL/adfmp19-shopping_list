@@ -40,4 +40,5 @@ class ProductItemTest {
         assertEquals("***Молоко, 1.5 литр***", pi.toString())
     }
 
+
 }

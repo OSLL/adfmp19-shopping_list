@@ -37,7 +37,7 @@ class ChangeListActivity : AppCompatActivity() {
         }
 
         lv.setOnItemLongClickListener { parent, view, position, id ->
-            val intent = Intent(this, delete_or_unselect::class.java)
+            val intent = Intent(this, DeleteOrUnselectActivity::class.java)
             intent.putExtra("tappedVal", position)
             intent.putExtra("product", (view as TextView).text.toString())
             startActivityForResult(intent, 3)
