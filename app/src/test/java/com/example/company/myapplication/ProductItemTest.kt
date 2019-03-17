@@ -40,5 +40,20 @@ class ProductItemTest {
         assertEquals("***Молоко, 1.5 литр***", pi.toString())
     }
 
+    @Test
+    fun randomItemTest() {
+        val charPool = arrayListOf('a', 'b', 'c', 'd')
+        val name = (1..5)
+                .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+                .map(charPool::get)
+                .joinToString("");
+        val quantity = kotlin.random.Random.nextFloat()
+        val units = arrayListOf("литр", "кг", "шт")
+        val unit = units[kotlin.random.Random.nextInt(0, units.size)]
+        val pi = ProductItem(name, unit, quantity)
+
+        assertEquals(name + ", " + quantity.toString() + " " + unit, pi.toString())
+    }
+
 
 }

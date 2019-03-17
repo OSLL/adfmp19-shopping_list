@@ -25,7 +25,7 @@ class OriginalExistingListTest {
     val activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun test1() {
+    fun defaultStateTest() {
         val firstName = "первый список"
         val allOk = "ПОКА НИЧЕГО НЕ СЪЕЛИ"
 

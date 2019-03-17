@@ -27,8 +27,8 @@ class CreateListTest {
     val activityRule = ActivityTestRule(MainActivity::class.java)
 
     @Test
-    fun findInExisting() {
-        val newName = "новый список"
+    fun oneNewListTest() {
+        val newName = "New list"
         check(!activityRule.activity.listMap.containsKey(newName))
         try {
             onView(withText(newName)).check(matches(not(isDisplayed())))
@@ -41,6 +41,34 @@ class CreateListTest {
 
         check(activityRule.activity.listMap.containsKey(newName))
         onView(withText(newName)).check(matches(isDisplayed()))
+    }
+    @Test
+    fun threeRandomNewListsTest() {
+        val n = 3
+        for (i in 1..n) {
+            val newName = getRandomName(6)
+            check(!activityRule.activity.listMap.containsKey(newName))
+            try {
+                onView(withText(newName)).check(matches(not(isDisplayed())))
+                check(false)
+            } catch (e: NoMatchingViewException) {
+            }
 
+            onView(withId(R.id.CreateNew)).perform(click())
+            onView(withId(R.id.enterListName)).perform(replaceText(newName))
+            onView(withId(R.id.CreateNewList)).perform(click())
+
+            check(activityRule.activity.listMap.containsKey(newName))
+            onView(withText(newName)).check(matches(isDisplayed()))
+        }
+    }
+
+    fun getRandomName(len : Int) : String {
+        val charPool = arrayListOf('a', 'b', 'c', 'd')
+        val name = (1..len)
+                .map { i -> kotlin.random.Random.nextInt(0, charPool.size) }
+                .map(charPool::get)
+                .joinToString("");
+        return name.get(0).toUpperCase() + name.substring(1)
     }
 }
