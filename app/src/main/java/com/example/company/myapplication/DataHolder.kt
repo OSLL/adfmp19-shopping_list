@@ -14,16 +14,23 @@ class DataHolder {
     }
 
     fun insertEmptyList(name : String) {
+        if (!listMap.containsKey(name)) {
+            listNames.add(name)
+        }
         listMap[name] = arrayListOf()
-        listNames.add(name)
     }
 
     fun replaceExistingList(name : String, list : ArrayList<ProductItem>) {
+        if (!listMap.containsKey(name)) {
+            listNames.add(name)
+        }
         listMap[name] = list
     }
 
     fun initToDemo() {
-        listMap["первый список"] = arrayListOf(ProductItem("ряженка", "кг", 1f))
-        listMap["Ещё список"] = arrayListOf(ProductItem("картошка"))
+        replaceExistingList("первый список",
+                arrayListOf(ProductItem("ряженка", "кг", 1f)))
+        replaceExistingList("Ещё список",
+                arrayListOf(ProductItem("картошка")))
     }
 }

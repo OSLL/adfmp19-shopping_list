@@ -21,8 +21,6 @@ class DataHolderTest {
     fun testGettingList() {
         val dataholder = DataHolder()
 
-        dataholder.insertEmptyList("newList")
-
         dataholder.replaceExistingList("newList",
                 arrayListOf(ProductItem("Колбаса")))
 

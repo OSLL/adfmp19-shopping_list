@@ -18,6 +18,8 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        dataHolder.initToDemo()
+
         adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataHolder.getListsNames())
         lv.adapter = this!!.adapter
 
