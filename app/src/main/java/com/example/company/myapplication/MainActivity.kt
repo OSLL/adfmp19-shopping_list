@@ -10,11 +10,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
-    val listMap = mutableMapOf<String, ArrayList<ProductItem>>(
-            "первый список" to arrayListOf(ProductItem("ряженка", "кг", 1f)),
-            "Ещё список" to arrayListOf(ProductItem("картошка")))
-
-    val listNames = listMap.keys.toMutableList()
+    val dataHolder = DataHolder()
 
     var adapter : ArrayAdapter<String>? = null
 
@@ -22,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, listNames)
+        adapter = ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, dataHolder.getListsNames())
         lv.adapter = this!!.adapter
 
         joinExisting.setOnClickListener {
@@ -38,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         lv.setOnItemClickListener { parent, view, position, id ->
             val intent = Intent(this, ChangeListActivity::class.java)
             intent.putExtra("listName", (view as TextView).text.toString())
-            intent.putExtra("products", listMap[(view as TextView).text.toString()])
+            intent.putExtra("products", dataHolder.getListByName((view as TextView).text.toString()))
             startActivityForResult(intent, 3)
         }
     }
@@ -49,17 +45,17 @@ class MainActivity : AppCompatActivity() {
         when (requestCode) {
             1 -> {
                 val listName = data.getStringExtra("newList")
-                listMap[listName] = arrayListOf()
-                listNames.add(listName)
+                dataHolder.insertEmptyList(listName)
             }
             2 -> {
                 val listName = data.getStringExtra("foundList")
-                listMap[listName] = arrayListOf()
-                listNames.add(listName)
+                dataHolder.insertEmptyList(listName)
             }
             3 -> {
                 val listName = data.getStringExtra("editedList")
-                listMap[listName] = data.getSerializableExtra("products") as ArrayList<ProductItem>
+                dataHolder.replaceExistingList(
+                        listName,
+                        data.getSerializableExtra("products") as ArrayList<ProductItem>)
             }
         }
         adapter!!.notifyDataSetChanged()

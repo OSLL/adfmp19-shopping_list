@@ -29,7 +29,7 @@ class CreateListTest {
     @Test
     fun oneNewListTest() {
         val newName = "New list"
-        check(!activityRule.activity.listMap.containsKey(newName))
+        check(!activityRule.activity.dataHolder.getListsNames().contains(newName))
         try {
             onView(withText(newName)).check(matches(not(isDisplayed())))
             check(false)
@@ -39,7 +39,7 @@ class CreateListTest {
         onView(withId(R.id.enterListName)).perform(replaceText(newName))
         onView(withId(R.id.CreateNewList)).perform(click())
 
-        check(activityRule.activity.listMap.containsKey(newName))
+        check(activityRule.activity.dataHolder.getListsNames().contains(newName))
         onView(withText(newName)).check(matches(isDisplayed()))
     }
     @Test
@@ -47,7 +47,7 @@ class CreateListTest {
         val n = 3
         for (i in 1..n) {
             val newName = getRandomName(6)
-            check(!activityRule.activity.listMap.containsKey(newName))
+            check(!activityRule.activity.dataHolder.getListsNames().contains(newName))
             try {
                 onView(withText(newName)).check(matches(not(isDisplayed())))
                 check(false)
@@ -58,7 +58,7 @@ class CreateListTest {
             onView(withId(R.id.enterListName)).perform(replaceText(newName))
             onView(withId(R.id.CreateNewList)).perform(click())
 
-            check(activityRule.activity.listMap.containsKey(newName))
+            check(activityRule.activity.dataHolder.getListsNames().contains(newName))
             onView(withText(newName)).check(matches(isDisplayed()))
         }
     }

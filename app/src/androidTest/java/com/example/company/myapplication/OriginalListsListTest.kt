@@ -29,7 +29,7 @@ class OriginalListsListTest {
     @Test
     fun findInExisting() {
         val firstName = "первый список"
-        check(activityRule.activity.listMap.containsKey(firstName))
+        check(activityRule.activity.dataHolder.getListsNames().contains(firstName))
         onView(withText(firstName)).check(matches(isDisplayed()))
     }
 }
