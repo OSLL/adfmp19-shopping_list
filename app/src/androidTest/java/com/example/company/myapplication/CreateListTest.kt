@@ -28,7 +28,7 @@ class CreateListTest {
 
     @Test
     fun oneNewListTest() {
-        val newName = "New list"
+        val newName = "New List"
         check(!activityRule.activity.dataHolder.getListsNames().contains(newName))
         try {
             onView(withText(newName)).check(matches(not(isDisplayed())))
@@ -36,7 +36,7 @@ class CreateListTest {
         } catch (e : NoMatchingViewException) {}
 
         onView(withId(R.id.CreateNew)).perform(click())
-        onView(withId(R.id.enterListName)).perform(replaceText(newName))
+        onView(withId(R.id.enterListName)).perform(typeText(newName))
         onView(withId(R.id.CreateNewList)).perform(click())
 
         check(activityRule.activity.dataHolder.getListsNames().contains(newName))
@@ -55,7 +55,7 @@ class CreateListTest {
             }
 
             onView(withId(R.id.CreateNew)).perform(click())
-            onView(withId(R.id.enterListName)).perform(replaceText(newName))
+            onView(withId(R.id.enterListName)).perform(typeText(newName))
             onView(withId(R.id.CreateNewList)).perform(click())
 
             check(activityRule.activity.dataHolder.getListsNames().contains(newName))
